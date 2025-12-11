@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class LoginController extends Controller
 {
@@ -64,4 +65,8 @@ class LoginController extends Controller
            ]);
     }
 
+    public function logout(Request $request) {
+
+        $request->user()->currentAccessToken()->delete();
+    }
 }
