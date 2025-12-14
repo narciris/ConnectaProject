@@ -13,8 +13,9 @@ class GetAllContactsController extends Controller
    
     public function __invoke(GetAllUsersUseCase $getAllUseCase)
     {
+        $result = $getAllUseCase->execute();
 
-          return $this->success("contactos retornados de manera exitos",$getAllUseCase->execute());
+          return $this->success("contactos retornados de manera exitos",$result->toArray());
 
     }
 }

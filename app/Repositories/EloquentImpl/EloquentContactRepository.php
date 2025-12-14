@@ -29,14 +29,15 @@ class EloquentContactRepository implements ContactInterfaceRespository{
 
     public function delete(int $id)
     {
-        $contact = Contacts::findOrFail($id);
-        $contact->delete();
-        return $contact;
+       return Contacts::destroy($id);
 
     }
 
-    public function findId(int $id, int $userId)
-    {
-        return Contacts::find(['id', $id,'usuario_id' => $userId])->first();
-    }
+   public function findId(int $id, int $userId)
+{
+    return Contacts::where('id', $id)
+                   ->where('usuario_id', $userId)
+                   ->first(); 
+}
+
 }

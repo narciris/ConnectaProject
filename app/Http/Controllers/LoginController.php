@@ -65,8 +65,10 @@ class LoginController extends Controller
            ]);
     }
 
-    public function logout(Request $request) {
+  public function logout(Request $request) {
+    $request->user()->currentAccessToken()->delete();
 
-        $request->user()->currentAccessToken()->delete();
-    }
+    return $this->success("Logout exitoso", []);
 }
+}
+
