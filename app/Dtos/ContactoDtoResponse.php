@@ -29,13 +29,24 @@ class ContactoDtoResponse {
 
     public static function fromModel($model){
            return new self(
-            $model->nombre ?? '',
+            $model->nombre  ?? '',
             $model->email ?? '',
             $model->descripcion ?? '',
             $model->telefono ?? '',
             $model->created_at ?? ''
            );
     } 
+
+    public static function fromArray($model){
+    return new self(
+        $model['nombre'] ,
+        $model['email'] ,
+        $model['descripcion'] ,
+        $model['telefono'] ,
+        $model['created_at']
+    );
+}
+
 
 
     public function toArray(){

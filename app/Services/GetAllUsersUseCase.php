@@ -15,10 +15,11 @@ class GetAllUsersUseCase {
 
     public function execute (){
 
-        $result = $this->contactRepository->getAll()->toArray();
-        $dtos = array_map(function ($contact) {
-            return ContactoDtoResponse::fromModel($contact);
-        }, $result);
+        $result = $this->contactRepository->getAll();
+      $dtos = $result->map(function ($contact) {
+        return ContactoDtoResponse::fromModel($contact);
+    });
+
         return $dtos;
 
     }
