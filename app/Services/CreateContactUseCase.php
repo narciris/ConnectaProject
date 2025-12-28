@@ -1,8 +1,10 @@
 <?php
- 
+
  namespace App\Services;
 
+use App\Events\ContactCreated;
 use App\Repositories\Contracts\ContactInterfaceRespository;
+use Illuminate\Support\Facades\Auth;
 
 class CreateContactUseCase {
 
@@ -17,12 +19,18 @@ class CreateContactUseCase {
 
     public function execute(array $data)
     {
-        
 
-        return $this->contactRepo->create($data);
+
+        $contact = $this->contactRepo->create($data);
+        event(new ContactCreated(
+            contact: $contact,
+            user: Auth::user()
+        ));
+
+        return $contact;
 
     }
-    
+
 
 
 

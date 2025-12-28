@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 namespace App\Repositories\Contracts;
 
 interface ContactInterfaceRespository {
 
 
-    public function getAll();
+    public function getAll(?array $filters);
 
     public function create(array $data);
 
