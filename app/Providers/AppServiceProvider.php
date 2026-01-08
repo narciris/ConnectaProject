@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Contacts;
+use App\Observers\CreatedContactObserver;
+use App\Observers\DeleteContactObserver;
+use App\Observers\UpdateContactObserver;
 use App\Repositories\Contracts\ContactInterfaceRespository;
 use App\Repositories\Contracts\NotificationInterfaceRepository;
 use App\Repositories\EloquentImpl\EloquentContactRepository;
@@ -24,7 +28,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-       
+      Contacts::observe(CreatedContactObserver::class);
+      Contacts::observe(DeleteContactObserver::class);
+      Contacts::observe(UpdateContactObserver::class);
 
     }
 }

@@ -10,10 +10,11 @@ class GetAllContactsController extends Controller
 {
 
     use ApiResponse;
-   
-    public function __invoke(GetAllUsersUseCase $getAllUseCase)
+
+    public function __invoke(Request $request,GetAllUsersUseCase $getAllUseCase)
     {
-        $result = $getAllUseCase->execute();
+        $filter = $request->only(['busqueda']);
+        $result = $getAllUseCase->execute($filter);
 
           return $this->success("contactos retornados de manera exitos",$result->toArray());
 

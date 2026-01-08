@@ -17,24 +17,30 @@ class EloquentNotificationRepository  implements NotificationInterfaceRepository
 
    public function getById(int $userId, int $notId)
    {
- 
+
    }
 
    public function delete(int $notiId)
    {
-    
+
    }
 
    public function create(array $data)
    {
       return Notification::create($data);
-    
+
    }
 
    public function unreadCount(int $userId)
    {
       return Notification::where('usuario_id', $userId)
       ->unread()
-      ->count();
+      ->get();
    }
+
+    public function markAsRead(int $userId)
+    {
+        return Notification::where('usuario_id',$userId)
+            ->where('leido',false)->update(['leido'=>true]);
+    }
 }

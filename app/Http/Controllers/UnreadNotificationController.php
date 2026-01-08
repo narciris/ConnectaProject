@@ -13,10 +13,8 @@ class UnreadNotificationController extends Controller
         $userID = Auth::id();
         $response = $unreadNotification->execute($userID);
 
-        return response()->json([
-            'status' => 'success',
-             'message' => 'data retornada',
-             'data' => $response
-        ]);
+        return response()->json(
+              $response
+        );
     }
 }

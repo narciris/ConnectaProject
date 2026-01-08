@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Services\CreateContactUseCase;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -21,7 +20,7 @@ class CreateContactController extends Controller
         $userID = Auth::user()->id;
         $request['usuario_id'] = $userID;
         $result = $createContactUseCase->execute($request->all());
-        return $this->success("Contacto creado correctamente",[$result]);
-        
+        return $this->success("Contacto creado correctamente",$result->toArray());
+
     }
 }

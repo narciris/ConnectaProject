@@ -9,15 +9,15 @@ class GetAllUsersUseCase {
 
     public function __construct(private readonly ContactInterfaceRespository $contactRepository)
     {
-        
+
     }
 
 
-    public function execute (){
+    public function execute (?array $filter =null){
 
-        $result = $this->contactRepository->getAll();
+        $result = $this->contactRepository->getAll($filter);
       $dtos = $result->map(function ($contact) {
-        return ContactoDtoResponse::fromModel($contact);
+        return ContactoDtoResponse::fromModel($contact)->toArray();
     });
 
         return $dtos;
