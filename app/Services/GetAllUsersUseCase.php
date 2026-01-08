@@ -17,7 +17,7 @@ class GetAllUsersUseCase {
 
         $result = $this->contactRepository->getAll($filter);
       $dtos = $result->map(function ($contact) {
-        return ContactoDtoResponse::fromModel($contact);
+        return ContactoDtoResponse::fromModel($contact)->toArray();
     });
 
         return $dtos;

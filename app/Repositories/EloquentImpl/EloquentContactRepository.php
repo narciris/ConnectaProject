@@ -9,22 +9,19 @@ use Illuminate\Support\Facades\Log;
 
 class EloquentContactRepository implements ContactInterfaceRespository{
 
-    public function getAll(?array $filters =[])
+    public function getAll(array $filters = null)
     {
-        Log::info("Filtros recibidos", ["filtros"=> $filters]);
-        $query =Contacts::query();
-        //por nombre
-        if(!empty($filters['nombre'])){
-
-            $query->where('nombre', 'like' ,'%' .$filters['nombre'].'%');
-
-        }
-        if(!empty($filter['email'])){
-            $query->where('email', 'like' ,'%'.$filters['email']. '%');
-        }
-        Log::info("query", [$query->get()]);
-        return $query->get();
+        return Contacts::query()
+            ->when(
+                isset($filters['busqueda']),
+                function ($query) use ($filters) {
+                    $query->where('nombre', 'like', '%' . $filters['busqueda'] . '%')
+                        ->orWhere('email', 'like', '%' . $filters['busqueda'] . '%');
+                }
+            )
+            ->get();
     }
+
 
     public function create(array $data){
         return Contacts::create($data);

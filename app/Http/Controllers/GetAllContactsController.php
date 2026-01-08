@@ -13,7 +13,7 @@ class GetAllContactsController extends Controller
 
     public function __invoke(Request $request,GetAllUsersUseCase $getAllUseCase)
     {
-        $filter = $request->only(['nombre', 'email']);
+        $filter = $request->only(['busqueda']);
         $result = $getAllUseCase->execute($filter);
 
           return $this->success("contactos retornados de manera exitos",$result->toArray());

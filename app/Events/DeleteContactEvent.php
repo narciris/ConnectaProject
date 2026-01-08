@@ -2,25 +2,24 @@
 
 namespace App\Events;
 
-use App\Models\Contacts;
-use App\Models\User;
+use App\Entities\ContactEntity;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactCreated
+class DeleteContactEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(
-        public Contacts $contact,
-        public User $user
-    )
-    {}
+    public function __construct( public ContactEntity $contactEntity)
+    {
+
+    }
 
     /**
      * Get the channels the event should broadcast on.
@@ -30,7 +29,13 @@ class ContactCreated
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new Channel('contactos'),
         ];
+    }
+
+    public function broadcastAs()
+    {
+        return 'contact.deleted';
+
     }
 }

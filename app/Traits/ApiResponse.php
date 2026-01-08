@@ -8,7 +8,7 @@ trait ApiResponse
         string $message ,
         array $data) {
         return response()->json([
-            'status'=> 'successs',
+            'status'=> 'success',
             'message' => $message ?? '',
             'data' => $data  ?? []
         ]);
@@ -21,5 +21,14 @@ trait ApiResponse
             'data' => $data ?? []
         ]);
 
+    }
+    public function successBasic (
+        string $message ,
+        array $data) {
+        return response()->json([
+            'status'=> 'success',
+            'message' => $message ?? ''
+
+        ]);
     }
 }
