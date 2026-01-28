@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\{Contacts,AssignIndicatorToUser,Parametrization};
 
 
 class User extends Authenticatable
@@ -46,5 +47,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function contacts(){
+        return $this->hasMany(Contacts::class,'usuario_id');
+    }
+
+    public function parametrization(){
+        return $this->hasOne(Parametrization::class,'user_id');
+    }
+
+    public function indicators(){
+        return $this->hasMany(AssignIndicatorToUser::class,'user_id');
     }
 }

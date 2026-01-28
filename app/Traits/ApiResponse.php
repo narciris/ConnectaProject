@@ -6,7 +6,7 @@ trait ApiResponse
 {
     public function success (
         string $message ,
-        array $data) {
+        mixed $data) {
         return response()->json([
             'status'=> 'success',
             'message' => $message ?? '',
@@ -14,7 +14,7 @@ trait ApiResponse
         ]);
     }
 
-    public function error(string|null $message = '', array|null $data = null){
+    public function error(string|null $message = '', mixed $data = null){
         return response()->json([
             'status' => 'error',
             'message'=> $message ?? 'Error al procesa solicitud',
@@ -24,7 +24,7 @@ trait ApiResponse
     }
     public function successBasic (
         string $message ,
-        array $data) {
+        mixed $data) {
         return response()->json([
             'status'=> 'success',
             'message' => $message ?? ''

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class EloquentContactRepository implements ContactInterfaceRespository{
 
-    public function getAll(array $filters = null)
+    public function getAll(?array $filters = null)
     {
         return Contacts::query()
             ->when(

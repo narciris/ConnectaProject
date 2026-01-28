@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use App\Services\GetAllUsersUseCase;
+use App\Http\Resources\ContactResource;
 
 class GetAllContactsController extends Controller
 {
@@ -16,7 +17,7 @@ class GetAllContactsController extends Controller
         $filter = $request->only(['busqueda']);
         $result = $getAllUseCase->execute($filter);
 
-          return $this->success("contactos retornados de manera exitos",$result->toArray());
+          return $this->success("contactos retornados de manera exitos",ContactResource::collection($result));
 
     }
 }

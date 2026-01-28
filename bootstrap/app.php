@@ -11,7 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         web: __DIR__.'/../routes/web.php',
         api: [__DIR__.'/../routes/api.php',
               __DIR__.'/../routes/contacts.php',
-              __DIR__.'/../routes/notification.php'
+              __DIR__.'/../routes/notification.php',
+              __DIR__.'/../routes/users.php',
+              __DIR__. '/../routes/indicators.php',
+              __DIR__. '/../routes/parametrizations.php',
+              __DIR__.'/../routes/variables.php',
             
             ],
               

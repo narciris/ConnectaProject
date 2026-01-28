@@ -10,6 +10,8 @@ use App\Repositories\Contracts\ContactInterfaceRespository;
 use App\Repositories\Contracts\NotificationInterfaceRepository;
 use App\Repositories\EloquentImpl\EloquentContactRepository;
 use App\Repositories\EloquentImpl\EloquentNotificationRepository;
+use App\Repositories\Contracts\UserInterfaceRepository;
+use App\Repositories\EloquentImpl\EloquentUserRepositoryImpl;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(ContactInterfaceRespository::class, EloquentContactRepository::class);
         $this->app->bind(NotificationInterfaceRepository::class,EloquentNotificationRepository::class);
+        $this->app->bind(UserInterfaceRepository::class,EloquentUserRepositoryImpl::class);
     }
 
     /**

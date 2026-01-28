@@ -7,6 +7,7 @@ use App\Events\ContactCreated;
 use App\Repositories\Contracts\ContactInterfaceRespository;
 use Illuminate\Support\Facades\Auth;
 
+
 class CreateContactUseCase {
 
 

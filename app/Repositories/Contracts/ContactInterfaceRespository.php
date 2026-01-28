@@ -13,4 +13,5 @@ interface ContactInterfaceRespository {
 
     public function delete(int $id);
     public function findId ( int $id, int $userId);
+
 }
