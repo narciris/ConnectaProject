@@ -18,6 +18,7 @@ class EmployeeResoruce extends JsonResource
             'nombre' => $this->name,
             'email' => $this->email,
             'id' => $this->id,
+            'parametrizaciones'=>$this->pivot?->parametrization_id
             
         ];
     }

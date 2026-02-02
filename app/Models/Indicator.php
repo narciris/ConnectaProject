@@ -15,6 +15,12 @@ class Indicator extends Model
     ];
 
     public function parametrization(){
-        return $this->belongsToMany(Parametrization::class,'indicator_parametrization');
+        return $this->hasMany(Parametrization::class,'indicator_id');
+    }
+
+    public function employees(){
+        return $this->belongsToMany(
+            User::class,
+        'assign_indicator_user')->withPivot('parametrization_id');
     }
 }

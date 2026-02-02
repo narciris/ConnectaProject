@@ -54,7 +54,9 @@ class User extends Authenticatable
     }
 
     public function parametrization(){
-        return $this->hasOne(Parametrization::class,'user_id');
+        return $this->belongsToMany(
+            Indicator::class,'assign_indicator_user')
+        ->withPivot('parametrization_id');
     }
 
     public function indicators(){

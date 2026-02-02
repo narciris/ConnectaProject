@@ -16,7 +16,8 @@ class Parametrization extends Model
         'min_points',
         'max_points',
         'indicator_id'
-        ,'is_default'
+        ,'is_default',
+        'indicator_id'
 
     ];
 

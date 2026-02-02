@@ -18,6 +18,7 @@ class IndicatorResource extends JsonResource
             'id' => $this->id,
             'nombre' => $this->name,
             'tipo_grafica' => $this->type_graphic,
+            'empleados' => EmployeeResoruce::collection($this->employees),
             'parametrizaciones' => ParametrizationResource::collection($this->parametrization)
         ];
     }
